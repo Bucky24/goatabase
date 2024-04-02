@@ -1,6 +1,9 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+
+require_once(__DIR__ . "/models/models.php");
+
 require_once(__DIR__ . "/utils/API.php");
 require_once(__DIR__ . "/routes/home.php");
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "node vendor/bucky24/php-components/src/PhpComponents/utils/watcher.js server",
+    "start": "node serve.js"
   },
   "keywords": [],
   "author": "",

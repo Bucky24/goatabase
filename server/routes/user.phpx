@@ -1,0 +1,22 @@
+<?php
+require_once(__DIR__ . "/../utils/API.php");
+
+API::handle("POST", "/user/login", function() use($UserModel) {
+    $username = API::getParam("username");
+    $password = API::getParam("password");
+
+    if (!$username || $username === "") {?>
+        <LoginForm error="Username required" />
+    <?php }
+
+    if (!$password || $password === "") {?>
+        <LoginForm error="Password required" />
+    <?php }
+
+    $users = $UserModel->search(array(
+        "username" => $username,
+    ));
+
+    print_r($users);
+});
+?>

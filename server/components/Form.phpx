@@ -2,6 +2,13 @@
 
 function Form($params) {
     $path = $params['path'];
+    if (array_key_exists("target", $params)) {
+    ?>
+        <form hx-post={$path} hx-ext="json-enc" hx-target={$params['target']}>
+            <?php $params['children'] ?>
+        </form>
+    <?php
+    }
     ?>
         <form hx-post={$path} hx-ext="json-enc">
             <?php $params['children'] ?>

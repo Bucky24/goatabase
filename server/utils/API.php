@@ -27,9 +27,20 @@ class API {
             die();
         }
 
+        $params = $_REQUEST;
+        unset($params['path']);
+
         $result = self::$handlers[$method][$realPath]();
 
         echo $result;
+    }
+
+    public static function getParam($paramName, $default = null) {
+        if (!array_key_exists($paramName, $_REQUEST)) {
+            return $default;
+        }
+
+        return $_REQUEST[$paramName];
     }
 }
 
