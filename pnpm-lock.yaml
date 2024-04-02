@@ -1,0 +1,16 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@bucky24/node-php':
+    specifier: ^0.7.15
+    version: 0.7.15
+
+packages:
+
+  /@bucky24/node-php@0.7.15:
+    resolution: {integrity: sha512-4ie7h9dZwNdy36xk71y871QHAgJXvBkyr68TsmEtrQwW2zjr8BfzPfzDE/WMVW1RRdvLS+rRpKY99hY5yJiinw==}
+    dev: false

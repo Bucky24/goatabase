@@ -1,0 +1,23 @@
+{
+    "name": "robbert/goat_site",
+    "authors": [
+        {
+            "name": "Robbert Wijtman",
+            "email": "robbert@xinxmedia.com"
+        }
+    ],
+    "require": {
+        "bucky24/php_database": "1.1.2",
+        "bucky24/php-components": "0.1.0"
+    },
+    "repositories": {
+        "php_database": {
+            "type": "git",
+            "url": "https://gitlab.com/bucky24/php_database.git"
+        },
+        "php-components": {
+            "type": "git",
+            "url": "https://github.com/Bucky24/php-components.git"
+        }
+    }
+}
