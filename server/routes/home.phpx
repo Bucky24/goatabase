@@ -1,10 +1,11 @@
 <?php
 
 require_once(__DIR__ . "/../utils/API.php");
+require_once(__DIR__ . "/../components/Form.php");
 
 API::handle("GET", "/auth", function() {
     ?>
-        <form hx-post="/login">
+        <Form path="/login">
             <div>
                 Username: <input type="text" name="username" />
             </div>
@@ -12,7 +13,7 @@ API::handle("GET", "/auth", function() {
                 Password: <input type="password" name="password" />
             </div>
             <button>Login</button>
-        </form>
+        </Form>
     <?php
 });
 

@@ -1,0 +1,12 @@
+<?php
+
+function Form($params) {
+    $path = $params['path'];
+    ?>
+        <form hx-post={$path} hx-ext="json-enc">
+            <?php $params['children'] ?>
+        </form>
+    <?php
+}
+
+?>
