@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    DirectorySlash Off
+    RewriteEngine On
+
+    RewriteRule ^(.+)$ index.php?path=$1 [QSA]
+    RewriteRule ^$ index.php [QSA]
+</IfModule>

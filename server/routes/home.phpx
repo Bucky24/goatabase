@@ -1,0 +1,15 @@
+<?php
+
+require_once(__DIR__ . "/../utils/API.php");
+
+API::handle("GET", "/auth", function() {
+    ?>
+        <form h-post="/login">
+            <div>
+                Username: <input type="text" name="username" />
+            </div>
+        </form>
+    <?php
+});
+
+?>
