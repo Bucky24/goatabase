@@ -8,7 +8,7 @@
     ],
     "require": {
         "bucky24/php_database": "1.1.2",
-        "bucky24/php-components": "0.1.5"
+        "bucky24/php-components": "0.1.7"
     },
     "repositories": {
         "php_database": {

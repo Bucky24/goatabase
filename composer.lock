@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1af457bad4e41e606503357c9dd22dff",
+    "content-hash": "e95b25136adde57172467b8cdc95a638",
     "packages": [
         {
             "name": "bucky24/php-components",
-            "version": "0.1.5",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bucky24/php-components.git",
-                "reference": "b03d06a9483151a35f02959b1aee4ab8172e54cb"
+                "reference": "ab1f9d67c63c15ff7450fb8ac903d8ebaeae3582"
             },
             "require": {
                 "php": ">=7.0"
@@ -35,7 +35,7 @@
                     "email": "rwijtman@gmail.com"
                 }
             ],
-            "time": "2024-04-02T23:05:59+00:00"
+            "time": "2024-04-05T21:33:02+00:00"
         },
         {
             "name": "bucky24/php_database",

@@ -3,7 +3,7 @@
 require_once(__DIR__ . "/Form.php");
 
 function LoginForm($params) {
-    ?>
+    return ?>
         <section>
             <div><?php $params['error'] ?></div>
             <Form path="/user/login" target="#main_container">

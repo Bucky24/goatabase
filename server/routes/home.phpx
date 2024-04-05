@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../components/LoginForm.php");
 require_once(__DIR__ . "/user.php");
 
 API::handle("GET", "/auth", function() {
-    ?>
+    return ?>
         <LoginForm />
     <?php
 });
