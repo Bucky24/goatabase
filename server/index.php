@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require_once(__DIR__ . "/config.php");
 
 require_once(__DIR__ . "/models/models.php");
 
@@ -13,11 +14,7 @@ if (array_key_exists("path", $_REQUEST)) {
 }
 
 if (!$path) {
-    $contents = file_get_contents("../client/index.html");
-
-    $contents = str_replace("{{url}}", "http://localhost:100", $contents);
-
-    echo $contents;
+    API::getStatic("/auth");
 } else {
     $method = $_SERVER['REQUEST_METHOD'];
     API::processRequest($method, $path);

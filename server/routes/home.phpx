@@ -2,12 +2,69 @@
 
 require_once(__DIR__ . "/../utils/API.php");
 require_once(__DIR__ . "/../components/LoginForm.php");
+require_once(__DIR__ . "/../components/Form.php");
+require_once(__DIR__ . "/../views/Home.php");
 
 require_once(__DIR__ . "/user.php");
 
 API::handle("GET", "/auth", function() {
+    $user = API::getAuthed();
+
+    if (!$user) {
+        return ?>
+            <LoginForm />
+        <?php
+    } else {
+        return ?>
+            <Home />
+        <?php
+    }
+});
+
+
+API::handle("GET", "/setup", function() {
+    API::getStatic("/setupform");
+});
+
+API::handle("GET", "/setupform", function() use($UserModel) {
+    $users = $UserModel->search(array());
+
+    if (count($users) > 0) {
+        return ?>
+            <div>Already setup!</div>
+        <?php
+    }
+
     return ?>
-        <LoginForm />
+        <Form path="setup">
+            <div>
+                Enter superadmin password:
+                <input type="password" name="password" />
+            </div>
+            <button>Submit</button>
+        </Form>
+    <?php
+});
+
+API::handle("POST", "/setup", function() use($UserModel) {
+    $users = $UserModel->search(array());
+
+    if (count($users) > 0) {
+        return ?>
+            <div>Already setup!</div>
+        <?php
+    }
+
+    $password = API::getParam("password");
+    // create a new user with superadmin role
+
+    $UserModel->insert(array(
+        "username" => "admin",
+        "password" => password_hash($password, PASSWORD_DEFAULT),
+    ));
+
+    return ?>
+        <LoginForm error="Use 'admin' as the username" />
     <?php
 });
 

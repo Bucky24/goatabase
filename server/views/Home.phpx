@@ -1,0 +1,9 @@
+<?php
+
+function Home() {
+    return ?>
+        <div>home</div>
+    <?php
+}
+
+?>

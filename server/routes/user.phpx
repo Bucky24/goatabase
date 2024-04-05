@@ -1,5 +1,8 @@
 <?php
 require_once(__DIR__ . "/../utils/API.php");
+require_once(__DIR__ . "/../utils/JWT.php");
+
+require_once(__DIR__ . "/../views/Home.php");
 
 API::handle("POST", "/user/login", function() use($UserModel) {
     $username = API::getParam("username");
@@ -21,6 +24,31 @@ API::handle("POST", "/user/login", function() use($UserModel) {
         "username" => $username,
     ));
 
-    print_r($users);
+    if (count($users) === 0) {
+        return ?>
+            <LoginForm error="No such user" />
+        <?php
+    }
+    $user = $users[0];
+
+    $valid = password_verify($password, $user['password']);
+
+    if (!$valid) {
+        return ?>
+            <LoginForm error="Bad password" />
+        <?php
+    }
+
+    $token = encodeJwt(array(
+        "user_id" => $user['id'],
+        "iat" => time(),
+        "exp" => time() + 60*60,
+    ));
+
+    setcookie("session", $token, time() + 60*60, "/");
+
+    return ?>
+        <Home />
+    <?php
 });
 ?>

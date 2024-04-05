@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . "/JWT.php");
+
 class API {
     private static $handlers = array(
         "GET" => array(),
@@ -41,6 +43,32 @@ class API {
         }
 
         return $_REQUEST[$paramName];
+    }
+
+    public static function getStatic($path) {
+        if ($path[0] === "/") {
+            $fullPath = BASE_URL . "$path";
+        } else {
+            $fullPath = BASE_URL . "/$path";
+        }
+
+        $contents = file_get_contents("../client/index.html");
+
+        $contents = str_replace("{{url}}", $fullPath, $contents);
+    
+        echo $contents;
+    }
+
+    public static function getAuthed() {
+        if (!array_key_exists("session", $_COOKIE)) {
+            return null;
+        }
+
+        $session = $_COOKIE['session'];
+
+        $data = decodeJwt($session);
+
+        return $data;
     }
 }
 
