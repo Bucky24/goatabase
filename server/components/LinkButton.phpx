@@ -1,0 +1,19 @@
+<?php
+
+require_once(__DIR__ . "/Form.php");
+
+function LinkButton($params) {
+    $link = $params['link'];
+    $text = $params['text'];
+    $target = "#" . $params['id'];
+
+    return ?>
+        <div id={$params['id']}>
+                <Form path={$link} target={$target}>
+                    <button><?php $text ?></button>
+                </Form>
+        </div>
+    <?php
+}
+
+?>

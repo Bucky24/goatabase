@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../utils/API.php");
 require_once(__DIR__ . "/../components/LoginForm.php");
 require_once(__DIR__ . "/../components/Form.php");
 require_once(__DIR__ . "/../views/Home.php");
+require_once(__DIR__ . "/../constants.php");
 
 require_once(__DIR__ . "/user.php");
 
@@ -16,7 +17,7 @@ API::handle("GET", "/auth", function() {
         <?php
     } else {
         return ?>
-            <Home />
+            <Home user_id={$user} />
         <?php
     }
 });
@@ -46,7 +47,7 @@ API::handle("GET", "/setupform", function() use($UserModel) {
     <?php
 });
 
-API::handle("POST", "/setup", function() use($UserModel) {
+API::handle("POST", "/setup", function() use($UserModel, $UserRoleModel) {
     $users = $UserModel->search(array());
 
     if (count($users) > 0) {
@@ -58,9 +59,14 @@ API::handle("POST", "/setup", function() use($UserModel) {
     $password = API::getParam("password");
     // create a new user with superadmin role
 
-    $UserModel->insert(array(
+    $user_id = $UserModel->insert(array(
         "username" => "admin",
         "password" => password_hash($password, PASSWORD_DEFAULT),
+    ));
+
+    $UserRoleModel->insert(array(
+        "user_id" => $user_id,
+        "role" => SUPERADMIN_ROLE,
     ));
 
     return ?>

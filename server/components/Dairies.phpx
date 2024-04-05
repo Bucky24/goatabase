@@ -1,0 +1,27 @@
+<?php
+
+require_once(__DIR__ . "/../controllers/dairyController.php");
+require_once(__DIR__ . "/LinkButton.php");
+
+function Dairies($params) {
+    $user_id = $params['user_id'];
+
+    $dairies = getDairiesForUser($user_id);
+
+    if (count($dairies) === 0) {
+        return ?>
+            <div>
+                <div>No Dairies!</div>
+                <LinkButton link="/forms/newdairyform" text="New Dairy" id="new_dairy" />
+            </div>
+        <?php
+    }
+
+    return ?>
+        <div>
+            <h3>Dairies</h3>
+        </div>
+    <?php
+}
+
+?>

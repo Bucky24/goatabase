@@ -68,7 +68,7 @@ class API {
 
         $data = decodeJwt($session);
 
-        return $data;
+        return $data->user_id;
     }
 }
 

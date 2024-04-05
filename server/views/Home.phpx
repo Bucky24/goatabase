@@ -1,8 +1,20 @@
 <?php
 
-function Home() {
+include_once(__DIR__ . "/../models/models.php");
+include_once(__DIR__ . "/../components/Dairies.php");
+
+function Home($params) {
+    global $DairyModel, $UserModel;
+
+    $user = $UserModel->get($params['user_id']);
+
+    $dairies = $DairyModel->search();
+
     return ?>
-        <div>home</div>
+        <div>
+            <h2>Welcome <?php $user['username'] ?></h2>
+            <Dairies user_id={$params['user_id']} />
+        </div>
     <?php
 }
 
