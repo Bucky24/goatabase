@@ -11,15 +11,26 @@ function Dairies($params) {
     if (count($dairies) === 0) {
         return ?>
             <div>
+                <ErrorHolder error={$params['error'] ?? ''} />
                 <div>No Dairies!</div>
                 <LinkButton link="/forms/newdairyform" text="New Dairy" id="new_dairy" />
             </div>
         <?php
     }
 
+    $dairy_elems = array_map(function ($item) {
+        return ?>
+            <div hx-get={"/dairy/{$item['id']}"} hx-target="#main_container" hx-replace-url="true">
+                <?php $item['name'] ?>
+            </div>
+        <?php
+    }, $dairies);
+
     return ?>
         <div>
+            <ErrorHolder error={$params['error'] ?? ''} />
             <h3>Dairies</h3>
+            <?php $dairy_elems ?>
         </div>
     <?php
 }

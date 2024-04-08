@@ -1,12 +1,15 @@
 <?php
 
 require_once(__DIR__ . "/../utils/API.php");
-require_once(__DIR__ . "/../components/LoginForm.php");
+require_once(__DIR__ . "/../components/forms/LoginForm.php");
 require_once(__DIR__ . "/../components/Form.php");
 require_once(__DIR__ . "/../views/Home.php");
 require_once(__DIR__ . "/../constants.php");
+require_once(__DIR__ . "/../components/Dairy.php");
 
 require_once(__DIR__ . "/user.php");
+require_once(__DIR__ . "/forms.php");
+require_once(__DIR__ . "/dairy.php");
 
 API::handle("GET", "/auth", function() {
     $user = API::getAuthed();
@@ -71,6 +74,20 @@ API::handle("POST", "/setup", function() use($UserModel, $UserRoleModel) {
 
     return ?>
         <LoginForm error="Use 'admin' as the username" />
+    <?php
+});
+
+API::handle("GET", "/dairy/*", function ($params) {
+    $user = API::getAuthed();
+
+    if (!$user) {
+        return ?>
+            <LoginForm />
+        <?php
+    }
+
+    return ?>
+        <Dairy id={$params[0]} user_id={$user} />
     <?php
 });
 

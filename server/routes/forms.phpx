@@ -1,0 +1,12 @@
+<?php
+
+require_once(__DIR__ . "/../utils/API.php");
+require_once(__DIR__ . "/../components/forms/CreateDairyForm.php");
+
+API::handle("GET", "/forms/newdairyform", function() {
+    return ?>
+        <CreateDairyForm />
+    <?php
+});
+
+?>

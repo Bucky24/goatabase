@@ -1,0 +1,19 @@
+<?php
+
+require_once(__DIR__ . "/../Form.php");
+
+function LoginForm($params) {
+    return ?>
+        <Form path="/user/login" target="#main_container" error={$params['error'] ?? ''}>
+            <div>
+                Username: <input type="text" name="username" />
+            </div>
+            <div>
+                Password: <input type="password" name="password" />
+            </div>
+            <button>Login</button>
+        </Form>
+    <?php
+}
+
+?>

@@ -13,7 +13,9 @@ function Home($params) {
     return ?>
         <div>
             <h2>Welcome <?php $user['username'] ?></h2>
-            <Dairies user_id={$params['user_id']} />
+            <div id="dairy_holder">
+                <Dairies user_id={$params['user_id']} />
+            </div>
         </div>
     <?php
 }

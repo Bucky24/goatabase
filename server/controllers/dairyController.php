@@ -15,7 +15,19 @@ function getDairiesForUser($user_id) {
         return $DairyModel->search();
     }
 
-    throw new Error("stub");
+    throw new Error("getDairiesForUser stub");
+}
+
+function canUserAccessDairy($user_id, $dairy_id) {
+    $dairies = getDairiesForUser($user_id);
+
+    foreach ($dairies as $dairy) {
+        if ($dairy['id'] == $dairy_id) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 ?>

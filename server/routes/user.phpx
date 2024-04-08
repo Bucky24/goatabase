@@ -3,6 +3,7 @@ require_once(__DIR__ . "/../utils/API.php");
 require_once(__DIR__ . "/../utils/JWT.php");
 
 require_once(__DIR__ . "/../views/Home.php");
+require_once(__DIR__ . "/../components/forms/LoginForm.php");
 
 API::handle("POST", "/user/login", function() use($UserModel) {
     $username = API::getParam("username");

@@ -24,15 +24,34 @@ class API {
             throw new Error("Bad method");
         }
 
-        if (!array_key_exists($realPath, self::$handlers[$method])) {
+        $match = null;
+        foreach (self::$handlers[$method] as $path => $value) {
+            $matches = array();
+            $processedPath = str_replace("/", "\\/", $path);
+            $processedPath = str_replace("*", "(.+)", $processedPath);
+            $processedPath = "/^$processedPath\$/";
+            $matched = preg_match($processedPath, $realPath, $matches);
+
+            //error_log($path . " " . $processedPath . ' ' . $realPath . " " . var_export($matched, true) . " " . var_export($matches, true));
+
+            if ($matched) {
+                $matches = array_splice($matches, 1);
+                $match = $matches;
+                $realPath = $path;
+                break;
+            }
+        }
+
+        if (!$match) {
             http_response_code(404);
+            print "No such path found $method $realPath";
             die();
         }
 
         $params = $_REQUEST;
         unset($params['path']);
 
-        $result = self::$handlers[$method][$realPath]();
+        $result = self::$handlers[$method][$realPath]($match);
 
         echo $result;
     }

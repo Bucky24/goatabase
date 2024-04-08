@@ -1,0 +1,17 @@
+<?php
+
+require_once(__DIR__ . "/../Form.php");
+
+function CreateDairyForm($params) {
+    return ?>
+        <Form path="/dairy" target="#dairy_holder" error={$params['error'] ?? ''}>
+            <div>
+                Dairy Name:
+                <input type="text" name="dairy" />
+            </div>
+            <button>Create</button>
+        </Form>
+    <?php
+}
+
+?>

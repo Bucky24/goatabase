@@ -1,0 +1,37 @@
+<?php
+
+require_once(__DIR__ . "/../utils/API.php");
+require_once(__DIR__ . "/../components/forms/LoginForm.php");
+require_once(__DIR__ . "/../components/Dairies.php");
+
+API::handle("POST", "/dairy", function() use ($DairyModel) {
+    $user = API::getAuthed();
+
+    if (!$user) {
+        return ?>
+            <LoginForm />
+        <?php
+    }
+
+    $name = API::getParam("dairy");
+
+    $dairies = $DairyModel->search(array(
+        "name" => $name,
+    ));
+
+    if (count($dairies) > 0) {
+        return ?>
+            <Dairies user_id={$user} error="A dairy with that name already exists" />
+        <?php
+    }
+
+    $dairy_id = $DairyModel->insert(array(
+        "name" => $name,
+    ));
+
+    return ?>
+        <Dairies user_id={$user} />
+    <?php
+});
+
+?>

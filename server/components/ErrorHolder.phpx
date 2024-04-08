@@ -1,0 +1,13 @@
+<?php
+
+function ErrorHolder($params) {
+    $error = $params['error'] ?? null;
+
+    if (!$error) return '';
+
+    return ?>
+        <div><?php $error ?></div>
+    <?php
+}
+
+?>

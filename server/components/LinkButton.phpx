@@ -1,7 +1,5 @@
 <?php
 
-require_once(__DIR__ . "/Form.php");
-
 function LinkButton($params) {
     $link = $params['link'];
     $text = $params['text'];
@@ -9,9 +7,7 @@ function LinkButton($params) {
 
     return ?>
         <div id={$params['id']}>
-                <Form path={$link} target={$target}>
-                    <button><?php $text ?></button>
-                </Form>
+            <button hx-get={$link} hx-target={$target}><?php $text ?></button>
         </div>
     <?php
 }

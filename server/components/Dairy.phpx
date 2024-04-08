@@ -1,0 +1,27 @@
+<?php
+
+require_once(__DIR__ . "/../controllers/dairyController.php");
+require_once(__DIR__ . "/ErrorHolder.php");
+
+function Dairy($params) {
+    global $DairyModel;
+
+    $dairy_id = $params['id'];
+    $user_id = $params['user_id'];
+
+    if (!canUserAccessDairy($user_id, $dairy_id)) {
+        return ?>
+            <ErrorHolder error="You cannot access that dairy!" />
+        <?php
+    }
+
+    $dairy = $DairyModel->get($dairy_id);
+
+    return ?>
+        <section>
+            <h2>Dairy <?php $dairy['name'] ?></h2>
+        </section>
+    <?php;
+}
+
+?>
